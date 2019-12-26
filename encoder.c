@@ -33,7 +33,7 @@ int main() {
   int mem_buffer_length = 0;
 
   //Generate memory buffer
-  mem_buffer_length = max_val(strlen(G1),strlen(G2));
+  mem_buffer_length = max_val(strlen(G[0]),strlen(G[1]));
   printf("Input: %s\n", INPUT);
   printf("Memory cells count reserved: %d\n", mem_buffer_length);
   mem_buffer = realloc(mem_buffer, (mem_buffer_length + 1) * sizeof(char));
@@ -56,7 +56,20 @@ int main() {
       printf("%d", b);
     }
     printf(" ");
-
+  }
+  for ( int i = 0; i < mem_buffer_length-1; i++) {
+    move_buffer(mem_buffer);
+    mem_buffer[0] = '0';
+    for ( int g = 0; g < polynom_count; g++) {
+      int b = 0;
+      for ( int j = 0; j < strlen(G[g]); j++ ) {
+        if (G[g][j] == '1') {
+          b = b ^ (mem_buffer[j] - '0');
+        }
+      }
+      printf("%d", b);
+    }
+    printf(" ");
   }
   printf("\n");
 
